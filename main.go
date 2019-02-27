@@ -4,10 +4,8 @@ import "fmt"
 
 func main() {
 	cards := newDeck()
-	hand, remainingCards := deal(cards, 5)
 
-	fmt.Println("Hand:")
-	hand.print()
-	fmt.Println("\n Remaining cards:")
-	remainingCards.print()
+	cardsString := cards.toString()
+
+	fmt.Println(cardsString)
 }
