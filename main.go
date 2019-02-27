@@ -5,7 +5,9 @@ import "fmt"
 func main() {
 	cards := newDeck()
 
-	cardsString := cards.toString()
+	err := cards.saveToFile("./my_cards.txt")
 
-	fmt.Println(cardsString)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
