@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"reflect"
 	"testing"
 )
 
@@ -54,6 +55,7 @@ func TestSaveToFileAndNewDeckFromFile(t *testing.T) {
 	}
 }
 
+// Test if deals a hand
 func TestDeal(t *testing.T) {
 	d := newDeck()
 
@@ -69,6 +71,18 @@ func TestDeal(t *testing.T) {
 	// Have all the remaining cards?
 	if len(remainingCards) != len(d)-nCrds {
 		errMsg := fmt.Sprintf(":: expected length %d, got %d ::\n", nCrds, len(remainingCards))
+		t.Errorf(colorError(errMsg))
+	}
+}
+
+// Test if a deck gets shuffled
+func TestShuffle(t *testing.T) {
+	d := newDeck()
+	u := newDeck()
+
+	d.shuffle()
+	if reflect.DeepEqual(d, u) {
+		errMsg := fmt.Sprintf(":: expected shuffled deck, got the same ::\n")
 		t.Errorf(colorError(errMsg))
 	}
 }
